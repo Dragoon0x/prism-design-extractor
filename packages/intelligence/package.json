@@ -1,0 +1,25 @@
+{
+  "name": "@prism/intelligence",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Prism — semantic naming (Opus), consistency + contrast audits, design-debt report, and diff between extractions. The only package allowed to mutate token.semanticRole or token.confidence.",
+  "license": "MIT",
+  "exports": { ".": { "types": "./src/index.ts", "default": "./src/index.ts" } },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "clean": "rm -rf .turbo node_modules"
+  },
+  "dependencies": {
+    "@prism/claude": "workspace:*",
+    "@prism/queue": "workspace:*",
+    "@prism/shared": "workspace:*",
+    "@prism/tokens": "workspace:*",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

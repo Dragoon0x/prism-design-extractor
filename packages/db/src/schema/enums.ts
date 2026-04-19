@@ -1,0 +1,91 @@
+import { pgEnum } from 'drizzle-orm/pg-core';
+
+export const inputTypeEnum = pgEnum('input_type', ['url', 'image', 'pdf']);
+export const extractionStatusEnum = pgEnum('extraction_status', [
+  'queued',
+  'running',
+  'succeeded',
+  'failed',
+  'cancelled',
+]);
+export const visibilityEnum = pgEnum('visibility', ['private', 'unlisted', 'public']);
+export const tokenCategoryEnum = pgEnum('token_category', [
+  'color',
+  'typography',
+  'spacing',
+  'radius',
+  'shadow',
+  'border',
+  'gradient',
+  'motion',
+  'breakpoint',
+  'z-index',
+  'opacity',
+  'filter',
+]);
+export const componentKindEnum = pgEnum('component_kind', [
+  'button',
+  'card',
+  'input',
+  'textarea',
+  'select',
+  'checkbox',
+  'radio',
+  'switch',
+  'badge',
+  'chip',
+  'nav',
+  'navbar',
+  'sidebar',
+  'tabs',
+  'tab',
+  'modal',
+  'dialog',
+  'popover',
+  'tooltip',
+  'toast',
+  'banner',
+  'alert',
+  'avatar',
+  'breadcrumb',
+  'pagination',
+  'progress',
+  'slider',
+  'dropdown',
+  'menu',
+  'list',
+  'list-item',
+  'table',
+  'footer',
+  'header',
+  'hero',
+  'feature',
+  'pricing-card',
+  'testimonial',
+  'icon',
+  'logo',
+  'unknown',
+]);
+export const assetKindEnum = pgEnum('asset_kind', ['icon', 'image', 'svg', 'font']);
+export const auditKindEnum = pgEnum('audit_kind', [
+  'contrast',
+  'a11y',
+  'duplication',
+  'orphan',
+  'magic-value',
+  'font-perf',
+  'missing-semantic-name',
+  'scale-violation',
+  'hardcoded-hex',
+  'inconsistent-radius',
+  'inconsistent-spacing',
+  'unused-token',
+]);
+export const auditSeverityEnum = pgEnum('audit_severity', ['info', 'minor', 'major', 'critical']);
+
+export const pdfPageStatusEnum = pgEnum('pdf_page_status', [
+  'pending',
+  'running',
+  'succeeded',
+  'failed',
+]);

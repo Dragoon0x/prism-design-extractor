@@ -1,0 +1,24 @@
+{
+  "name": "@prism/outputs",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Prism — deterministic generators for all output formats (DESIGN.md, DTCG, Tailwind, CSS, SCSS, CSS-in-JS). Pure functions; no LLM calls.",
+  "license": "MIT",
+  "exports": { ".": { "types": "./src/index.ts", "default": "./src/index.ts" } },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:unit": "vitest run",
+    "clean": "rm -rf .turbo node_modules"
+  },
+  "dependencies": {
+    "@prism/shared": "workspace:*",
+    "@prism/tokens": "workspace:*",
+    "jszip": "^3.10.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

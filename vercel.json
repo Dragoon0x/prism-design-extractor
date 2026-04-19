@@ -1,0 +1,39 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "buildCommand": "pnpm turbo run build --filter=@prism/web...",
+  "ignoreCommand": "pnpm turbo-ignore @prism/web",
+  "functions": {
+    "apps/web/src/app/api/worker/extract/route.ts": {
+      "maxDuration": 300,
+      "memory": 3009
+    },
+    "apps/web/src/app/api/worker/pdf-page/route.ts": {
+      "maxDuration": 120,
+      "memory": 3009
+    },
+    "apps/web/src/app/api/worker/pdf-reconcile/route.ts": {
+      "maxDuration": 120,
+      "memory": 1769
+    },
+    "apps/web/src/app/api/worker/generate-outputs/route.ts": {
+      "maxDuration": 60,
+      "memory": 1024
+    },
+    "apps/web/src/app/api/stream/[id]/route.ts": {
+      "maxDuration": 300,
+      "memory": 512
+    },
+    "apps/web/src/app/api/extract/route.ts": {
+      "maxDuration": 30,
+      "memory": 512
+    },
+    "apps/web/src/app/api/upload/route.ts": {
+      "maxDuration": 30,
+      "memory": 512
+    }
+  },
+  "regions": ["iad1"],
+  "crons": []
+}

@@ -1,0 +1,31 @@
+{
+  "name": "@prism/db",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Prism — Drizzle ORM schema, migrations, and query helpers. Uses Neon serverless driver for Vercel-compatible connections.",
+  "license": "MIT",
+  "exports": {
+    ".": { "types": "./src/index.ts", "default": "./src/index.ts" },
+    "./schema": { "types": "./src/schema/index.ts", "default": "./src/schema/index.ts" }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "generate": "drizzle-kit generate",
+    "migrate": "tsx src/migrate.ts",
+    "studio": "drizzle-kit studio",
+    "test": "vitest run",
+    "clean": "rm -rf .turbo node_modules"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.4",
+    "@prism/shared": "workspace:*",
+    "drizzle-orm": "^0.38.0"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.30.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

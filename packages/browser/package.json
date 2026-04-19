@@ -1,0 +1,23 @@
+{
+  "name": "@prism/browser",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Prism — serverless Chromium launcher (@sparticuz/chromium) + SSRF-safe navigation for Vercel functions.",
+  "license": "MIT",
+  "exports": { ".": { "types": "./src/index.ts", "default": "./src/index.ts" } },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "clean": "rm -rf .turbo node_modules"
+  },
+  "dependencies": {
+    "@prism/shared": "workspace:*",
+    "@sparticuz/chromium": "^131.0.1",
+    "playwright-core": "^1.49.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

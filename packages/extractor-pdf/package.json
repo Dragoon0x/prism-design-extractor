@@ -1,0 +1,29 @@
+{
+  "name": "@prism/extractor-pdf",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Prism — PDF extraction pipeline (pdfjs render + QStash per-page fan-out + cross-page reconciler).",
+  "license": "MIT",
+  "exports": { ".": { "types": "./src/index.ts", "default": "./src/index.ts" } },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "clean": "rm -rf .turbo node_modules"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "^0.1.65",
+    "@prism/db": "workspace:*",
+    "@prism/extractor-vision": "workspace:*",
+    "@prism/queue": "workspace:*",
+    "@prism/shared": "workspace:*",
+    "@prism/tokens": "workspace:*",
+    "@vercel/blob": "^0.27.0",
+    "drizzle-orm": "^0.38.0",
+    "pdfjs-dist": "^4.9.155"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

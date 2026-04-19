@@ -1,0 +1,44 @@
+{
+  "name": "prism",
+  "version": "0.1.0",
+  "description": "Open-source design extractor. Extract a complete design system from any URL, screenshot, or PDF — powered by Claude vision + reasoning. Vercel-native.",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "test:unit": "turbo run test:unit",
+    "test:integration": "turbo run test:integration",
+    "test:e2e": "turbo run test:e2e",
+    "eval": "pnpm --filter @prism/eval run harness",
+    "db:generate": "pnpm --filter @prism/db run generate",
+    "db:migrate": "pnpm --filter @prism/db run migrate",
+    "db:studio": "pnpm --filter @prism/db run studio",
+    "web": "pnpm --filter @prism/web dev",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "clean": "turbo run clean && rm -rf node_modules .turbo"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "prettier": "^3.4.2",
+    "turbo": "^2.3.3",
+    "typescript": "^5.7.2"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "typescript": "5"
+      }
+    }
+  }
+}

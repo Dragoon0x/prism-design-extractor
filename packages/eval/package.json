@@ -1,0 +1,29 @@
+{
+  "name": "@prism/eval",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Prism — vision accuracy evaluation harness. Runs the screenshot extractor against a known-answer fixture suite; CI gate at F1 >= 0.80.",
+  "license": "MIT",
+  "exports": { ".": { "types": "./src/index.ts", "default": "./src/index.ts" } },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "harness": "tsx src/cli.ts",
+    "synthesize": "tsx src/synthesize.ts",
+    "test": "vitest run",
+    "test:unit": "vitest run",
+    "clean": "rm -rf .turbo node_modules"
+  },
+  "dependencies": {
+    "@napi-rs/canvas": "^0.1.65",
+    "@prism/extractor-vision": "workspace:*",
+    "@prism/shared": "workspace:*",
+    "@prism/tokens": "workspace:*",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

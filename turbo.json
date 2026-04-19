@@ -1,0 +1,75 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["**/.env.*local", "**/.env", "tsconfig.base.json"],
+  "globalEnv": [
+    "NODE_ENV",
+    "NEXT_PUBLIC_APP_URL",
+    "DATABASE_URL",
+    "UPSTASH_REDIS_REST_URL",
+    "UPSTASH_REDIS_REST_TOKEN",
+    "QSTASH_TOKEN",
+    "QSTASH_CURRENT_SIGNING_KEY",
+    "QSTASH_NEXT_SIGNING_KEY",
+    "BLOB_READ_WRITE_TOKEN",
+    "AES_KEK",
+    "ANTHROPIC_API_KEY",
+    "ENABLE_AUTH",
+    "AUTH_SECRET",
+    "SMTP_URL",
+    "RATE_LIMIT_ANON_PER_HOUR",
+    "RATE_LIMIT_SIGNED_PER_HOUR",
+    "CLAUDE_VISION_MODEL",
+    "CLAUDE_REASONING_MODEL",
+    "CLAUDE_FAST_MODEL",
+    "SENTRY_DSN",
+    "OTEL_EXPORTER_OTLP_ENDPOINT",
+    "OTEL_SERVICE_NAME",
+    "MAX_PDF_BYTES",
+    "MAX_IMAGE_BYTES",
+    "DOMAIN_BLOCKLIST",
+    "EXTRACTION_URL_TIMEOUT_MS",
+    "EXTRACTION_PAGE_TIMEOUT_MS",
+    "EXTRACTION_IMAGE_TIMEOUT_MS",
+    "LOCAL_CHROMIUM",
+    "VERCEL_ENV",
+    "VERCEL_URL"
+  ],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": ["dist/**", ".next/**", "!.next/cache/**"],
+      "inputs": ["src/**", "tsconfig.json", "package.json"]
+    },
+    "dev": {
+      "cache": false,
+      "persistent": true,
+      "dependsOn": ["^build"]
+    },
+    "lint": {
+      "outputs": []
+    },
+    "typecheck": {
+      "dependsOn": ["^build"],
+      "outputs": []
+    },
+    "test": {
+      "dependsOn": ["^build"],
+      "outputs": ["coverage/**"],
+      "inputs": ["src/**", "test/**", "tests/**"]
+    },
+    "test:unit": {
+      "outputs": ["coverage/**"]
+    },
+    "test:integration": {
+      "dependsOn": ["^build"],
+      "outputs": ["coverage/**"]
+    },
+    "test:e2e": {
+      "dependsOn": ["^build"],
+      "outputs": ["playwright-report/**", "test-results/**"]
+    },
+    "clean": {
+      "cache": false
+    }
+  }
+}

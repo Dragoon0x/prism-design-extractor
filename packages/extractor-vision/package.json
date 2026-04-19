@@ -1,0 +1,26 @@
+{
+  "name": "@prism/extractor-vision",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Prism — image-to-canonical extraction pipeline via Claude vision.",
+  "license": "MIT",
+  "exports": { ".": { "types": "./src/index.ts", "default": "./src/index.ts" } },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "clean": "rm -rf .turbo node_modules"
+  },
+  "dependencies": {
+    "@prism/claude": "workspace:*",
+    "@prism/queue": "workspace:*",
+    "@prism/shared": "workspace:*",
+    "@prism/tokens": "workspace:*",
+    "sharp": "^0.33.5",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

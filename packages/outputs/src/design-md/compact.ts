@@ -1,0 +1,166 @@
+/**
+ * DESIGN.md compact — context-window-efficient design system brief.
+ * Target: ≤ 8K Claude tokens / ~32 KB.
+ *
+ * Structure: metadata header → colors table → typography table → spacing list
+ *   → radii list → shadows list → quick stats. No evidence, no components.
+ *
+ * Generators that read from this file (agents, humans) should be able to
+ * reproduce the design from the table alone.
+ */
+import type { Artifact, CanonicalExtraction, ColorToken } from '@prism/shared';
+import { textArtifact } from './../artifact.js';
+import {
+  colorCss,
+  keyedTokens,
+  lengthCss,
+  radiusCss,
+  shadowCss,
+  tokensByCategory,
+  typographyCss,
+} from './../shared.js';
+
+function pad(text: string, minLen: number): string {
+  const n = Math.max(minLen - text.length, 0);
+  return text + ' '.repeat(n);
+}
+
+function table(headers: string[], rows: string[][]): string {
+  const widths = headers.map((h, i) =>
+    Math.max(h.length, ...rows.map((r) => (r[i] ?? '').length)),
+  );
+  const renderRow = (cells: string[]) =>
+    `| ${cells.map((c, i) => pad(c, widths[i] ?? 0)).join(' | ')} |`;
+  const headerLine = renderRow(headers);
+  const sep = `| ${widths.map((w) => '-'.repeat(w)).join(' | ')} |`;
+  const bodyLines = rows.map(renderRow);
+  return [headerLine, sep, ...bodyLines].join('\n');
+}
+
+function confidenceCell(c: number): string {
+  return c.toFixed(2);
+}
+
+function colorRow(c: ColorToken, index: number, key: string): string[] {
+  return [
+    String(index + 1),
+    `\`${colorCss(c.value)}\``,
+    key,
+    `${c.usageCount}×`,
+    confidenceCell(c.confidence),
+  ];
+}
+
+export function generateDesignMdCompact(extraction: CanonicalExtraction): Artifact {
+  const t = tokensByCategory(extraction);
+  const lines: string[] = [];
+
+  lines.push(`# Design System`);
+  lines.push('');
+  const inputDesc =
+    extraction.input.type === 'url' ? extraction.input.url : `${extraction.input.type} upload`;
+  lines.push(
+    `> Source: \`${inputDesc}\`  ·  Extraction \`${extraction.extractionId}\`  ·  Schema v${extraction.schemaVersion}`,
+  );
+  lines.push(
+    `> ${extraction.tokens.length} tokens  ·  extracted in ${(extraction.meta.durationMs / 1000).toFixed(1)}s  ·  cost $${extraction.meta.cost.totalUsd.toFixed(4)}`,
+  );
+  lines.push('');
+
+  // Colors
+  if (t.colors.length > 0) {
+    lines.push(`## Colors (${t.colors.length})`);
+    lines.push('');
+    const rows = keyedTokens(t.colors).map(({ key, value }, i) => colorRow(value, i, key));
+    lines.push(table(['#', 'Value', 'Token', 'Usage', 'Conf.'], rows));
+    lines.push('');
+  }
+
+  // Typography
+  if (t.typography.length > 0) {
+    lines.push(`## Typography (${t.typography.length})`);
+    lines.push('');
+    const rows = keyedTokens(t.typography).map(({ key, value }) => {
+      const v = typographyCss(value);
+      return [
+        key,
+        v.family,
+        v.size,
+        String(v.weight),
+        v.lineHeight ?? '—',
+        confidenceCell(value.confidence),
+      ];
+    });
+    lines.push(table(['Token', 'Family', 'Size', 'Wt.', 'LH', 'Conf.'], rows));
+    lines.push('');
+  }
+
+  // Spacing (bullet list if a scale was detected; table otherwise)
+  if (t.spacing.length > 0) {
+    const onScale = t.spacing.filter((s) => s.spacingRole === 'scale-step' && s.scaleBasePx);
+    const base = onScale[0]?.scaleBasePx;
+    lines.push(
+      `## Spacing${base ? ` · ${base}px scale detected` : ''} (${t.spacing.length})`,
+    );
+    lines.push('');
+    for (const { key, value } of keyedTokens(t.spacing)) {
+      const multiple =
+        value.scaleMultiple !== undefined ? `  (${value.scaleMultiple}×${value.scaleBasePx})` : '';
+      lines.push(`- \`${key}\`: ${lengthCss(value.value)}${multiple}`);
+    }
+    lines.push('');
+  }
+
+  // Radii
+  if (t.radii.length > 0) {
+    lines.push(`## Radii (${t.radii.length})`);
+    lines.push('');
+    for (const { key, value } of keyedTokens(t.radii)) {
+      lines.push(`- \`${key}\`: ${radiusCss(value)}`);
+    }
+    lines.push('');
+  }
+
+  // Shadows
+  if (t.shadows.length > 0) {
+    lines.push(`## Shadows (${t.shadows.length})`);
+    lines.push('');
+    for (const { key, value } of keyedTokens(t.shadows)) {
+      lines.push(`- \`${key}\`: \`${shadowCss(value)}\``);
+    }
+    lines.push('');
+  }
+
+  // Gradients (from vision — brief)
+  if (t.gradients.length > 0) {
+    lines.push(`## Gradients (${t.gradients.length})`);
+    lines.push('');
+    for (const g of t.gradients) {
+      lines.push(`- \`${g.name}\`: ${g.evidence[0]?.rawText ?? '(vision-detected)'}`);
+    }
+    lines.push('');
+  }
+
+  // Warnings (if any)
+  if (extraction.warnings.length > 0) {
+    lines.push(`## Warnings (${extraction.warnings.length})`);
+    lines.push('');
+    for (const w of extraction.warnings.slice(0, 10)) {
+      lines.push(`- _${w.stage}_: ${w.message}`);
+    }
+    lines.push('');
+  }
+
+  lines.push(`---`);
+  lines.push(
+    `_Generated by [Prism](https://github.com/REPLACE_ME/prism) · ${extraction.meta.extractedAt}_`,
+  );
+  lines.push('');
+
+  return textArtifact({
+    format: 'design-md-compact',
+    filename: 'DESIGN.md',
+    contentType: 'text/markdown',
+    text: lines.join('\n'),
+  });
+}

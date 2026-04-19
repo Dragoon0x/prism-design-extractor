@@ -1,0 +1,30 @@
+{
+  "name": "@prism/claude",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Prism — Anthropic SDK wrapper with model routing, prompt caching, cost tracking, and structured tool-use output.",
+  "license": "MIT",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "default": "./src/index.ts"
+    }
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:unit": "vitest run",
+    "clean": "rm -rf .turbo node_modules"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.40.0",
+    "@prism/shared": "workspace:*",
+    "zod": "^3.24.1",
+    "zod-to-json-schema": "^3.24.1"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "@prism/tokens",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Prism — token clustering, confidence math, color conversions, W3C DTCG serialization.",
+  "license": "MIT",
+  "exports": { ".": { "types": "./src/index.ts", "default": "./src/index.ts" } },
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:unit": "vitest run",
+    "clean": "rm -rf .turbo node_modules"
+  },
+  "dependencies": {
+    "@prism/shared": "workspace:*",
+    "culori": "^4.0.1"
+  },
+  "devDependencies": {
+    "@types/culori": "^4.0.1",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
+  }
+}
