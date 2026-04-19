@@ -6,15 +6,15 @@
   "ignoreCommand": "pnpm turbo-ignore @prism/web",
   "functions": {
     "apps/web/src/app/api/worker/extract/route.ts": {
-      "maxDuration": 300,
-      "memory": 3009
+      "maxDuration": 60,
+      "memory": 2048
     },
     "apps/web/src/app/api/worker/pdf-page/route.ts": {
-      "maxDuration": 120,
-      "memory": 3009
+      "maxDuration": 60,
+      "memory": 2048
     },
     "apps/web/src/app/api/worker/pdf-reconcile/route.ts": {
-      "maxDuration": 120,
+      "maxDuration": 60,
       "memory": 1769
     },
     "apps/web/src/app/api/worker/generate-outputs/route.ts": {
@@ -22,7 +22,7 @@
       "memory": 1024
     },
     "apps/web/src/app/api/stream/[id]/route.ts": {
-      "maxDuration": 300,
+      "maxDuration": 60,
       "memory": 512
     },
     "apps/web/src/app/api/extract/route.ts": {
