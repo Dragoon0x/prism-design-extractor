@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Card, CardBody, CardHeader } from '@/components/ui/card';
+import { DisclaimerNotice } from '@/components/disclaimer-notice';
 
 export default function AboutPage() {
   return (
@@ -82,6 +83,8 @@ export default function AboutPage() {
           vars at any Postgres + Redis + S3-compatible setup.
         </CardBody>
       </Card>
+
+      <DisclaimerNotice variant="card" />
     </main>
   );
 }

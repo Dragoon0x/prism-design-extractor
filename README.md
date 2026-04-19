@@ -1,14 +1,20 @@
 # Prism
 
 > Extract a complete design system from any URL, screenshot, or PDF.
-> Open-source. BYOK. 11 output formats from one canonical token tree.
+> Open-source. BYOK. 13 output formats from one canonical token tree.
 > Runs entirely on Vercel.
 
 Prism analyses a website, image, or PDF and emits a full design system — tokens, components, assets, audits — with Claude vision + reasoning on every extraction. Every extracted token carries a confidence score and an evidence trail linking it to the pixel and selector it came from.
 
+## ⚠️ Disclaimer — educational & experimental use only
+
+**Prism is an experimental research project distributed "AS IS" for educational and experimental purposes only.** Outputs are AI-generated (Claude vision + reasoning) and can be wrong — palettes may miss colors, typography detection may substitute families, audit findings are suggestions not verdicts. **Always do your own research (DYOR) before using Prism's output in production.** The authors, contributors, and project take **no responsibility and no liability** for any damage, loss, cost, or consequence arising from use of this software, its outputs, or the hosted demo. You alone are responsible for your Anthropic API billing (BYOK), the legal right to extract your inputs (copyright, ToS, robots.txt), and any decisions or code derived from the output. Not affiliated with Anthropic, Vercel, Neon, Upstash, or any brand whose site you extract.
+
+See the full [`DISCLAIMER.md`](./DISCLAIMER.md) for the complete terms.
+
 ## Status
 
-🚧 Early development (v1 in progress). The URL extractor pipeline is live; screenshot + PDF pipelines land in Phases 6 & 7.
+🚧 Early development (v1 in progress). URL, screenshot, and PDF pipelines all live.
 
 ## Highlights
 

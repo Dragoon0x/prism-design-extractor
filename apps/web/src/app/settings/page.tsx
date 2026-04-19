@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { KeyRound, Save, Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardBody, CardHeader } from '@/components/ui/card';
+import { DisclaimerNotice } from '@/components/disclaimer-notice';
 import { Input } from '@/components/ui/input';
 import { apiKeyPreview, clearApiKey, getApiKey, isPlausibleApiKey, setApiKey } from '@/lib/byok';
 
@@ -134,14 +135,26 @@ export default function SettingsPage() {
             </li>
             <li>
               • The full source is open — the{' '}
-              <a href="https://github.com/REPLACE_ME/prism" className="underline" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://github.com/Dragoon0x/prism-design-extractor"
+                className="underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 repo
               </a>{' '}
               is the source of truth for everything this app does.
             </li>
+            <li>
+              • <strong>You</strong> are responsible for every dollar spent on the key you paste
+              below. Prism does not cap cost per request — an extraction on a large site can cost
+              meaningful Claude credits.
+            </li>
           </ul>
         </CardBody>
       </Card>
+
+      <DisclaimerNotice variant="card" />
     </main>
   );
 }

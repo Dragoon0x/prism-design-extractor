@@ -56,3 +56,4 @@ tmp/
 
 # Prism-local (user artifacts for dev)
 .prism-storage/
+.vercel

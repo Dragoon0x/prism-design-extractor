@@ -22,8 +22,16 @@ export function SiteHeader() {
             Settings
           </Link>
           <a
+            className="hover:text-[var(--color-fg)]"
+            href="https://github.com/Dragoon0x/prism-design-extractor/blob/main/DISCLAIMER.md"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Disclaimer
+          </a>
+          <a
             className="inline-flex items-center gap-1 hover:text-[var(--color-fg)]"
-            href="https://github.com/REPLACE_ME/prism"
+            href="https://github.com/Dragoon0x/prism-design-extractor"
             target="_blank"
             rel="noopener noreferrer"
           >

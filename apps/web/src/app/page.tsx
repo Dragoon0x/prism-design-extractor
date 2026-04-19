@@ -11,6 +11,7 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { ExtractForm } from '@/components/extract-form';
+import { DisclaimerNotice } from '@/components/disclaimer-notice';
 
 const ARTIFACTS: { icon: React.ComponentType<{ className?: string }>; label: string }[] = [
   { icon: FileText, label: 'DESIGN.md' },
@@ -47,6 +48,8 @@ export default function HomePage() {
         </header>
 
         <ExtractForm />
+
+        <DisclaimerNotice variant="banner" className="w-full max-w-2xl" />
 
         <ul className="flex flex-wrap justify-center gap-2">
           {ARTIFACTS.map(({ icon: Icon, label }) => (
@@ -109,10 +112,12 @@ export default function HomePage() {
         </div>
       </section>
 
+      <DisclaimerNotice variant="card" className="w-full" />
+
       <footer className="flex items-center gap-4 pb-8 text-xs text-[var(--color-muted)]">
         <a
           className="hover:text-[var(--color-fg)]"
-          href="https://github.com/REPLACE_ME/prism"
+          href="https://github.com/Dragoon0x/prism-design-extractor"
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -126,6 +131,15 @@ export default function HomePage() {
         <Link className="hover:text-[var(--color-fg)]" href="/settings">
           Settings
         </Link>
+        <span>·</span>
+        <a
+          className="hover:text-[var(--color-fg)]"
+          href="https://github.com/Dragoon0x/prism-design-extractor/blob/main/DISCLAIMER.md"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Disclaimer
+        </a>
         <span>·</span>
         <span className="font-mono">MIT</span>
       </footer>
